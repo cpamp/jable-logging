@@ -1,8 +1,9 @@
 {
-  "name": "logging",
+  "name": "@jable/logging",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -19,5 +20,8 @@
   "homepage": "https://github.com/cpamp/jable-logging#readme",
   "devDependencies": {
     "@types/node": "^7.0.31"
+  },
+  "dependencies": {
+    "reflect-metadata": "^0.1.10"
   }
 }
