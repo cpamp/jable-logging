@@ -10,11 +10,16 @@ function defaultEnd(constructorName: string, propertyKey: string): string {
 
 export function Log(pipe: (out: string) => void = console.log, start: IOutLogString = defaultStart, end: IOutLogString = defaultEnd) {
     return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
-        var oldFunc = target[propertyKey];
+        var oldFunc = descriptor.value;
         descriptor.value = function() {
             pipe(start(target.constructor.name, propertyKey));
-            var result = oldFunc.apply(this, arguments);
-            pipe(end(target.constructor.name, propertyKey));
+            try {
+                var result = oldFunc.apply(this, arguments);
+            } catch(e) {
+                throw e;
+            } finally {
+                pipe(end(target.constructor.name, propertyKey));
+            }
             return result;
         }
     };
