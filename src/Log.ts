@@ -1,4 +1,4 @@
-export function Log(pipe: Function = console.log) {
+export function Log(pipe: (out: string) => void = console.log) {
     return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
         var oldFunc = target[propertyKey];
         descriptor.value = function() {
